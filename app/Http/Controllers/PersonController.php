@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\HTTP\Resources\PersonResource;
+use App\HTTP\Resources\PersonResourceCollection;
 use App\Person;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
-    public function show(Person $person) {
-        return $person;
+    /**
+    * @param Person $person
+    * @return PersonResource
+    */
+    public function show(Person $person): PersonResource {
+        return new PersonResource($person);
+    }
+    /**
+     * @return PersonResourceCollection
+     */
+    public function index(): PersonResourceCollection {
+        return new PersonResourceCollection(Person::paginate());
     }
 }
