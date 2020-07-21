@@ -37,9 +37,22 @@ class PersonController extends Controller
         $person = Person::create($request->all());
         return new PersonResource($person);
     }
-
+    /**
+     * @param Person $person
+     * @param Request $request
+     * @return PersonResource
+     */
     public function update(Person $person, Request $request): PersonResource {
         $person->update($request->all());
         return new PersonResource($person);
+    }
+    /**
+     * @param Person $person
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(Person $person) {
+        $person->delete();
+        return response()->json();
     }
 }
