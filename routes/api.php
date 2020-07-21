@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Person;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +14,4 @@ use App\Person;
 |
 */
 
-Route::get('/person/{person}', function(Person $person) {
-    return $person;
-});
+Route::get('/person/{person}', 'PersonController@show');
